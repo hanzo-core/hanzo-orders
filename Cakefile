@@ -1,20 +1,22 @@
 require 'shortcake'
 
-use 'cake-test'
+use 'cake-bundle'
+use 'cake-outdated'
 use 'cake-publish'
+use 'cake-test'
 use 'cake-version'
 
 task 'clean', 'clean project', ->
   exec 'rm -rf dist'
 
 task 'build', 'build project', ->
-  handroll = require 'handroll'
-
-  bundle = yield handroll.bundle
+  bundle.write
     entry:    'src/index.coffee'
+    format:   'es'
     external: true
-
-  yield bundle.write format: 'es'
+    compilers:
+      coffee:
+        version: 1
 
 task 'watch', 'watch project', ->
   build = (filename) ->
