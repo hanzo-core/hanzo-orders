@@ -9,8 +9,8 @@ import css  from './css/app.styl'
 rfc3339  =  Daisho.util.time.rfc3339
 yyyymmdd =  Daisho.util.time.yyyymmdd
 
-class HanzoHome extends Daisho.Views.Dynamic
-  tag: 'hanzo-home'
+class HanzoOrders extends Daisho.Views.Dynamic
+  tag: 'hanzo-orders'
   html: html
   css:  css
   days: 90
@@ -261,15 +261,15 @@ class HanzoHome extends Daisho.Views.Dynamic
     ).catch (err)->
       console.log err.stack
 
-HanzoHome.register()
+HanzoOrders.register()
 
-export default class Home
+export default class Orders
   constructor: (daisho, ps, ms, cs)->
     tag = null
 
-    ps.register 'home',
+    ps.register 'orders',
       ->
-        @el = el = document.createElement 'hanzo-home'
+        @el = el = document.createElement 'hanzo-orders'
 
         tag = (daisho.mount el)[0]
         return el
@@ -278,5 +278,5 @@ export default class Home
         return @el
       ->
 
-    ms.register 'Home', ->
-      ps.show 'home'
+    ms.register 'Orders', ->
+      ps.show 'orders'

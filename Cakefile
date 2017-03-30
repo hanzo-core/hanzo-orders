@@ -11,6 +11,7 @@ task 'clean', 'clean project', ->
 
 task 'build', 'build project', ->
   bundle.write
+    cache:    false
     entry:    'src/index.coffee'
     format:   'es'
     external: true
